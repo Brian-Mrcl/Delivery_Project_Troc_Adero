@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Troc'Adero</title>
-    </head>
-    <boby>
-        <p>To continue ...</p>
-    </boby>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troc'Adero - Échange culturel local</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"   rel="stylesheet">
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput = document.getElementById("search");
+      searchInput.addEventListener("input", function () {
+
+        const filter = searchInput.value.toLowerCase();
+        const annonces = document.querySelectorAll(".annonce");
+        annonces.forEach(annonce => {
+          const text = annonce.textContent.toLowerCase();
+          annonce.style.display = text.includes(filter) ? "block" : "none";
+        });
+
+        
+      });
+    });
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-yellow-500 text-white text-center py-6 shadow-md">
+    <h1 class="text-4xl font-bold tracking-wide">Troc'Adero</h1>
+    <p class="text-lg">Plateforme d'échange culturel local</p>
+  </header>
+
+  <nav class="bg-white shadow flex justify-center space-x-6 py-4">
+    <a href="#"class="text-gray-700 font-semibold hover:text-yellow-500">Accueil</a>
+    <a href="#" class="text-gray-700 font-semibold hover:text-yellow-500">Mes échanges</a>
+    <a href="#" class="text-gray-700 font-semibold hover:text-yellow-500">Proposer un objet</a>
+    <a href="#" class="text-gray-700 font-semibold hover:text-yellow-500">Recherche</a>
+  </nav>
+
+  <main class="max-w-5xl mx-auto p-6">
+    <div class="mb-6">
+      <label for="search" class="block mb-2 text-lg font-medium">Rechercher un objet</label>
+      <input id="search" type="text" placeholder="DVD, Livre, CD..." class="w-full p-3 border rounded-lg shadow-sm">
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4">Derniers objets disponibles à l'échange</h2>
+
+    <div class="space-y-4">
+      <div class="annonce bg-white p-4 rounded-xl shadow">
+        <h3 class="text-xl font-bold">DVD - Le Fabuleux Destin d'Amélie Poulain</h3>
+        <p class="text-sm text-gray-600">État : Très bon | Échange dans un rayon de 5km</p>
+      </div>
+
+      <div class="annonce bg-white p-4 rounded-xl shadow">
+        <h3 class="text-xl font-bold">TESTTTTTTTTT</h3>
+        <p class="text-sm text-gray-600">État : Bon |</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="text-center py-4 bg-yellow-500 text-white mt-10">
+    &copy; 2025 Troc'Adero - Tous droits réservés
+  </footer>
+</body>
 </html>
