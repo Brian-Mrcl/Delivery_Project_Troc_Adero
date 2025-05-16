@@ -7,21 +7,16 @@ export default async function handler(req, res) {
 
   try {
     const client = await clientPromise;
-    const db = client.db(); // nom de la base depuis ton URI
-    const collection = db.collection('items'); // nom de ta collection
+    const db = client.db();
+    const { title, type, genre } = req.body;
 
-    const data = req.body;
-
-    // Vérifie que les champs attendus sont présents
-    if (!data.name || !data.description) {
-      return res.status(400).json({ error: 'Champs manquants' });
+    if (!title || !type || !genre) {
+      return res.status(400).json({ error: 'Tous les champs sont requis' });
     }
 
-    const result = await collection.insertOne(data);
-
-    res.status(201).json({ message: 'Objet ajouté !', id: result.insertedId });
+    const result = await db.collection('items').insertOne({ title, type, genre });
+    res.status(201).json({ message: 'Item ajouté', id: result.insertedId });
   } catch (error) {
-    console.error('Erreur ajout MongoDB:', error);
     res.status(500).json({ error: 'Erreur serveur' });
   }
 }
