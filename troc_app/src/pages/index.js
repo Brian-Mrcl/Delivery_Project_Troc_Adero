@@ -1,25 +1,44 @@
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
   return (
     <div className={styles.page}>
       <nav className={styles.navbar}>
         <div className={styles.logo}>
-          <img src="..\assets\logo.png" alt="Troc'Adero Logo" className={styles.logoImg} />
+          <img 
+            src="/logo.png" 
+            alt="Troc'Adero Logo" 
+            className={styles.logoImg} 
+            onClick={() => setIsModalOpen(true)}
+            style={{ cursor: 'pointer' }}
+          />
           <span className={styles.logoText}>Troc'Adero</span>
         </div>
         <div className={styles.navLinks}>
           <Link href="/product">Product</Link>
           <Link href="/about">About us</Link>
           <Link href="Account">Account</Link>
-          <Link href="/collection">My Collection</Link>
+          <Link href="/annonce_items/my_items">My Collection</Link>
           <Link href="/social">Our Social Medias</Link>
           <Link href="/community">Community</Link>
           <Link href="/messages">Messagerie</Link>
           <button className={styles.cta}>Échanger maintenant</button>
         </div>
       </nav>
+
+      {isModalOpen && (
+        <div className={styles.modal} onClick={() => setIsModalOpen(false)}>
+          <div className={styles.modalContent}>
+            <img src="/logo.png" alt="Troc'Adero Logo" className={styles.modalLogo} />
+          </div>
+        </div>
+      )}
+      
 
       <header className={styles.header}>
         <h1 className={styles.title}>Troc'Adero</h1>
@@ -30,6 +49,7 @@ export default function Home() {
           className={styles.searchBar}
         />
       </header>
+      
 
       <main className={styles.grid}>
         <div className={styles.card}>

@@ -46,7 +46,7 @@ export default function Account() {
         <p className={styles.subtitle}>Zone : {userData.city || "15 km autour de Marseille"}</p>
 
         <div className={styles.buttons}>
-          <button>📦 Voir mes annonces</button>
+          <button onClick={() => router.push("/annonce_items/my_items")}>📦 Voir mes annonces</button>
           <button onClick={() => router.push("/edit")}>⚙️ Modifier mon profil</button>
           <button onClick={() => signOut({ callbackUrl: "/" })}>🚪 Se déconnecter</button>
         </div>
