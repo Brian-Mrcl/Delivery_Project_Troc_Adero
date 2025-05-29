@@ -1,4 +1,5 @@
 import clientPromise from '../../../lib/mongodb'; // adapte selon ton import MongoDB
+require('dotenv').config();
 
 export default async function handler(req, res) {
   try {

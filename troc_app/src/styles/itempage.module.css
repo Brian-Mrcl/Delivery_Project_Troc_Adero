@@ -1,0 +1,151 @@
+
+.page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 40px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoImg {
+  height: 40px;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #004c6d;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: #444;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.navLinks a:hover {
+  color: #0077a1;
+}
+
+.cta {
+  background-color: #ff5c2e;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cta:hover {
+  background-color: #e1481a;
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: 60px 20px 30px;
+  background: linear-gradient(135deg, #fffaea 0%, #f8f8f8 100%);
+}
+
+.form {
+  text-align: center;
+  padding: 60px 20px 30px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #004c6d;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 8px;
+}
+
+.searchBar {
+  margin-top: 20px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* ===== MAIN GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  margin-bottom: 12px;
+  color: #004c6d;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 12px;
+  color: #0077a1;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #e6f2f7;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 40px;
+}
