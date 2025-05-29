@@ -82,3 +82,79 @@
 .card li {
   margin-bottom: 0.5rem;
 }
+
+/* Authentication Login + Register */
+.authRequired {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  margin: 3rem auto;
+}
+
+.authRequired h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.authButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.authButtons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.authButtons button:first-child {
+  background-color: #0070f3;
+  color: white;
+}
+
+.authButtons button:first-child:hover {
+  background-color: #0059c1;
+}
+
+.authButtons button:last-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.authButtons button:last-child:hover {
+  background-color: #1e7e34;
+}
+
+
+.backButton {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.backButton:hover {
+  background-color: #e0e0e0;
+}

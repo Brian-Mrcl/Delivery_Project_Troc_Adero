@@ -6,13 +6,13 @@ export default function Home() {
     <div className={styles.page}>
       <nav className={styles.navbar}>
         <div className={styles.logo}>
-          <img src="/logo.svg" alt="Troc'Adero Logo" className={styles.logoImg} />
+          <img src="..\assets\logo.png" alt="Troc'Adero Logo" className={styles.logoImg} />
           <span className={styles.logoText}>Troc'Adero</span>
         </div>
         <div className={styles.navLinks}>
           <Link href="/product">Product</Link>
           <Link href="/about">About us</Link>
-          <Link href="/account">Account</Link>
+          <Link href="Account">Account</Link>
           <Link href="/collection">My Collection</Link>
           <Link href="/social">Our Social Medias</Link>
           <Link href="/community">Community</Link>

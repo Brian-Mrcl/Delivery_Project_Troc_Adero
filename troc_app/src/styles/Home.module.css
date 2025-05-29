@@ -5,7 +5,11 @@
   background-color: #f8f8f8;
   margin: 0;
   padding: 0;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
 }
+
 
 /* ===== NAVBAR ===== */
 .navbar {
@@ -136,11 +140,12 @@
 }
 
 /* ===== FOOTER ===== */
+
 .footer {
   text-align: center;
   padding: 20px;
   background-color: #e6f2f7;
   font-size: 0.9rem;
   color: #333;
-  margin-top: 40px;
+  margin-top: auto; 
 }
