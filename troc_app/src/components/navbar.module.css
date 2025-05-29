@@ -1,0 +1,60 @@
+.navbar {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: auto;
+  z-index: 1000;
+  background: transparent;
+  padding: 0;
+}
+
+.menuButton {
+  display: block;
+  font-size: 2rem;
+  background: white;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: none;
+}
+
+.navLinks {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 200px;
+}
+
+.navLinks.active {
+  display: flex;
+}
+
+.navLinks a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.navLinks a:hover {
+  background-color: #f5f5f5;
+}
+
+

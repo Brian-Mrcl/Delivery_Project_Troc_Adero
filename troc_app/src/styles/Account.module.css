@@ -141,20 +141,3 @@
 }
 
 
-.backButton {
-  position: fixed;
-  bottom: 60px;
-  left: 20px;
-  background-color: #f0f0f0;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-}
-
-.backButton:hover {
-  background-color: #e0e0e0;
-}

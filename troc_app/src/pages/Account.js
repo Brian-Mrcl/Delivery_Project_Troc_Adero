@@ -76,12 +76,6 @@ export default function Account() {
           </ul>
         </div>
       </div>
-        <button
-          className={styles.backButton}
-          onClick={() => router.push("/")}
-        >
-          ⬅️ Retour au menu
-        </button>
     </div>
   );
 }

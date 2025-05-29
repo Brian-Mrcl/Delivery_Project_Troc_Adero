@@ -55,5 +55,6 @@ export default function MyItemsPage() {
         )}
       </div>
     </div>
+    
   );
 }
