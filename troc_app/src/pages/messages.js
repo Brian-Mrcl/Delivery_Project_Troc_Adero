@@ -8,36 +8,44 @@ export default function Messages() {
   const [to, setTo] = useState("");
   const [users, setUsers] = useState([]);
 
-  // Récupère tous les utilisateurs (pour la démo, on récupère les emails distincts des messages)
   useEffect(() => {
-    fetch("/api/messages")
+    fetch("/api/users")
       .then(res => res.json())
       .then(data => {
-        setMessages(data);
-        // Liste des utilisateurs distincts (hors soi-même)
-        const emails = Array.from(new Set(data.flatMap(m => [m.from, m.to])));
-        setUsers(emails.filter(e => e !== session?.user?.email));
+        setUsers(data.filter(u => u.email !== session?.user?.email));
       });
   }, [session]);
 
-  // Rafraîchit les messages après envoi
+  useEffect(() => {
+    if (session) {
+      fetch("/api/messages")
+        .then(res => res.json())
+        .then(setMessages);
+    }
+  }, [session]);
+
   const refreshMessages = () => {
     fetch("/api/messages")
       .then(res => res.json())
       .then(setMessages);
   };
 
-  const handleSend = async () => {
-    if (!input.trim() || !to) return;
-    await fetch("/api/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ to, text: input }),
-    });
-    setInput("");
-    refreshMessages();
-  };
+const handleSend = async () => {
+  if (!input.trim() || !to) return;
+  // On cherche par username OU email
+  const user = users.find(
+    u => u.name?.toLowerCase() === to.toLowerCase() || u.email?.toLowerCase() === to.toLowerCase()
+  );
+  const toEmail = user ? user.email : to;
 
+  await fetch("/api/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ to: toEmail, text: input }),
+  });
+  setInput("");
+  refreshMessages();
+};
   if (status === "loading") return <p>Loading...</p>;
   if (!session) return <p>You must be logged in.</p>;
 
@@ -47,12 +55,19 @@ export default function Messages() {
       <div style={{ marginBottom: 16 }}>
         <label>
           Send to:&nbsp;
-          <select value={to} onChange={e => setTo(e.target.value)}>
-            <option value="">-- Choose a user --</option>
+          <input
+            type="text"
+            list="user-list"
+            placeholder="Enter username"
+            value={to}
+            onChange={e => setTo(e.target.value)}
+            style={{ width: 220 }}
+          />
+          <datalist id="user-list">
             {users.map(u => (
-              <option key={u} value={u}>{u}</option>
+              <option key={u.email} value={u.name || u.email} />
             ))}
-          </select>
+          </datalist>
         </label>
       </div>
       <div style={{ minHeight: 200, marginBottom: 20, background: "#f9f9f9", padding: 10, borderRadius: 4 }}>

@@ -1,38 +1,36 @@
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import clientPromise from "@/lib/mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth/[...nextauth]";
 
-export default function Messages() {
-  const { data: session, status } = useSession();
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
-  const [to, setTo] = useState(""); // email du destinataire
-  const [users, setUsers] = useState([]);
+export default async function handler(req, res) {
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) return res.status(401).json({ message: "Unauthorized" });
 
-  // Récupère tous les utilisateurs (hors soi-même)
-  useEffect(() => {
-    fetch("/api/users")
-      .then(res => res.json())
-      .then(data => {
-        setUsers(data.filter(u => u.email !== session?.user?.email));
-      });
-  }, [session]);
+  const client = await clientPromise;
+  const db = client.db();
 
-  // ... (le reste ne change pas)
+  if (req.method === "POST") {
+    const { to, text } = req.body;
+    if (!to || !text) return res.status(400).json({ message: "Missing fields" });
+    const message = {
+      from: session.user.email,
+      to,
+      text,
+      date: new Date(),
+    };
+    await db.collection("messages").insertOne(message);
+    return res.status(201).json({ message: "Sent" });
+  }
 
-  return (
-    <div>
-      <label>
-        Send to:&nbsp;
-        <select value={to} onChange={e => setTo(e.target.value)}>
-          <option value="">-- Choose a user --</option>
-          {users.map(u => (
-            <option key={u.email} value={u.email}>
-              {u.name || u.email}
-            </option>
-          ))}
-        </select>
-      </label>
-      {/* ...le reste du formulaire... */}
-    </div>
-  );
+  if (req.method === "GET") {
+    const user = session.user.email;
+    const messages = await db
+      .collection("messages")
+      .find({ $or: [{ from: user }, { to: user }] })
+      .sort({ date: 1 })
+      .toArray();
+    return res.status(200).json(messages);
+  }
+
+  res.status(405).end();
 }
